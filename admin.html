@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiscyCRAFT - Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background: #35424a;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background: #35424a;
+            color: #ffffff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        form {
+            margin-top: 20px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: #35424a;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background: #4a6a80; /* Lichtere kleur bij hover */
+        }
+
+        #verification {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #message {
+            margin-top: 20px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Paneel</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="over.html">Over</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <form id="loginForm">
+            <label for="username">Gebruikersnaam:</label>
+            <input type="text" id="username" required>
+            <br>
+            <label for="password">Wachtwoord:</label>
+            <input type="password" id="password" required>
+            <br>
+            <button type="submit">Inloggen</button>
+        </form>
+        <div id="verification">
+            <label for="verificationCode">Eigenaar Verificatie Code:</label>
+            <input type="text" id="verificationCode">
+            <button id="verifyBtn">Verifiëren</button>
+        </div>
+        <div id="message"></div>
+    </main>
+    <footer>
+        <p>&copy; 2024 MiscyCRAFT</p>
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').onsubmit = function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === 'Thijsvanhenten' && password === 'Zwabberislief2011') {
+                document.getElementById('verification').style.display = 'block';
+            } else {
+                document.getElementById('message').innerText = 'Onjuiste gebruikersnaam of wachtwoord.';
+            }
+        };
+
+        document.getElementById('verifyBtn').onclick = function() {
+            const code = document.getElementById('verificationCode').value;
+            if (code === '9208') {
+                document.getElementById('message').innerText = 'Toegang verleend!';
+                window.location.href = 'admin-only.html'; // Redirect naar de admin-only pagina
+            } else {
+                document.getElementById('message').innerText = 'Onjuiste verificatiecode.';
+            }
+        };
+    </script>
+</body>
+</html>
+
